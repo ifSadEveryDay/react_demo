@@ -7,6 +7,7 @@ import store from './store'
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 function App() {
+  console.log(store);
   return (
     <Provider store={store}>
       <Router>

@@ -26,7 +26,7 @@ function Inform(props){
 }
 const stateProps=(state)=>{
   return {
-    list:state.list
+    list:state.count.list
   }
 }
 export default connect(stateProps,null)(Inform)

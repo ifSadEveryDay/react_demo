@@ -2,7 +2,8 @@ import myContext from './myContext'
 import { Input } from 'antd'
 import 'antd/dist/antd.css'
 import React,{useState,useContext,useRef,useEffect} from 'react'
-import store from './store'
+import * as countActions from './action/countNum'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 const { Search } = Input
 function SearchInput(props) {
@@ -15,35 +16,33 @@ function SearchInput(props) {
   useEffect(()=>{
     console.log("refs",refs);
   },[Val])
-
-  return<Search
+  return(
+    <div>
+      <Search
     placeholder={props.inputVal}
     allowClear
+    defaultValue={props.inputVal}
     enterButton="Search"
     size="large"
-    onSearch={props.onSearch}
+    onSearch={(val)=>{
+      props.countActions.changeInputVal(val);
+      props.countActions.addItem();
+    }}
     ref={refs}
+    loading={props.loading}
   />
+  <span>{props.inputVal}</span>
+    </div>
+  )
 }
 const stateProps=(state)=>{
   return {
-    inputVal:state.inputVal
+    inputVal:state.count.inputVal
   }
 }
 const dispatchProps=(dispatch)=>{
   return {
-    onSearch(val){
-      const changeInput={
-        type:'changeInputVal',
-        value:val
-      }
-      dispatch(changeInput);
-      const action ={
-        type:'addItem',
-        value:val
-      }
-      dispatch(action)
-    }
+    countActions:bindActionCreators(countActions,dispatch)
   }
 }
 export default connect(stateProps,dispatchProps)(SearchInput)

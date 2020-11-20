@@ -5,14 +5,17 @@ const defState={
     "I",
     "LOVE",
     "YOU"
-  ]
+  ],
+  loading:false
 }
-export default (state=defState,action)=>{
+const count= (state=defState,action)=>{
   switch (action.type) {
     case "addItem":
       var newState=cloneDeep(state)
       newState.list.push(newState.inputVal);
       newState.inputVal="";
+      newState.loading=false;
+      console.log(newState);
       return newState;
       break;
     case "changeInputVal":
@@ -26,3 +29,5 @@ export default (state=defState,action)=>{
   }
   
 }
+
+export default count;
