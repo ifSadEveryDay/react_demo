@@ -10,10 +10,15 @@ const defState={
 export default (state=defState,action)=>{
   switch (action.type) {
     case "addItem":
-      let newState=cloneDeep(state)
+      var newState=cloneDeep(state)
       newState.list.push(newState.inputVal);
       newState.inputVal="";
       return newState;
+      break;
+    case "changeInputVal":
+      var newState=cloneDeep(state)
+      newState.inputVal=action.value;
+      return newState; 
       break;
     default:
       return state

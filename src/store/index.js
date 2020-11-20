@@ -1,7 +1,10 @@
-import { createStore } from 'redux'
+import { createStore,applyMiddleware } from 'redux'
 import reducer from './reducer'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+import {composeWithDevTools} from 'redux-devtools-extension'
 const store = createStore(
   reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()   //使用react插件
+  composeWithDevTools(applyMiddleware(thunk,logger)) 
 )
 export default store

@@ -1,29 +1,31 @@
-import logo from './logo.svg'
 import './App.css'
 import React from 'react'
-import { Button, DatePicker } from 'antd'
-import 'antd/dist/antd.css'
-import ClickCounter from './ClickCounter'
+import ClickCounter from './SearchInput'
+import InformList from './inform'
 import myContext from './myContext'
-
+import store from './store'
+import {Provider} from 'react-redux'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 function App() {
   return (
-    <div className="App">
+    <Provider store={store}>
+      <Router>
+      <div className="App">
       <header className="App-header">
-        <div>我是父组件</div>
-        <Button
-          type="primary"
-          style={{
-            marginLeft: 8,
-          }}
-        >
-          Primary Button{' '}
-        </Button>
-        <ClickCounter name="React" />
+      <div className="container">
+     <myContext.Provider value={{
+       username:'luoawai'
+     }}>
+    <Route path="/" exact component={ClickCounter}></Route>
+     <Route path="/" component={InformList}></Route>
+      {/* <ClickCounter/>
+      <InformList/> */}
+     </myContext.Provider>
+      </div>
       </header>
-     
-      
     </div>
+    </Router>
+    </Provider>
   )
 }
 
