@@ -1,0 +1,23 @@
+{
+  "name": "craco-cesium",
+  "version": "1.2.0",
+  "description": "Let's use Cesium with create-react-app today!",
+  "main": "index.js",
+  "repository": "https://github.com/darwin-education/craco-cesium.git",
+  "author": "Darwin Education, Inc. <info@darwineducation.com>",
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "copy-webpack-plugin": "^5.0.5",
+    "html-webpack-tags-plugin": "^2.0.17",
+    "webpack": "^4.41.2"
+  },
+  "peerDependencies": {
+    "@craco/craco": "*"
+  },
+  "optionalDependencies": {
+    "strip-pragma-loader": "*"
+  }
+}
